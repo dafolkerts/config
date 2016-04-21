@@ -1,0 +1,45 @@
+1.  Ensure BIOS AHCI feature has been activated for SATA
+
+2.  Check for firmware updates routinely (especially for the first year after purchase)
+
+3.  Use EXT4 file system (Do not use BTRFS)
+
+4.  Add "noatime" to /etc/fstab:
+	UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx / ext4 noatime,errors=remount-ro 0 1
+
+5.  Add the TRIM command to end of /etc/rc.local (TRIM on boot):
+	fstrim /
+	exit 0
+
+6.  Disable weekly cron TRIM job by moving the file to the root directory:
+	sudo mv -v /etc/cron.weekly/fstrim /fstrim
+
+7.  Limit the use of swap by adding these lines to /etc/sysctl.conf:
+	# Sharply reduce swap inclination
+	vm.swappiness=1
+
+8.  Limit write actions of Firefox:
+	Set cache to 0
+		Firefox menu - Preferences - Advanced
+		"Cached Web Content"
+		check "Override automatic cache management and set cache to 0 MB
+
+9.  Limit write actions of Chrome / Chromium:
+	Launch Chrome / Chromium
+	Press F12 key to open developers' console
+	Press F1 key to open settings
+	check "Disable cache"
+	- only works with developers' console open
+	- perhaps always open one extra tab that you keep the developers' console open
+    OR
+	Launch Chromium (or Chrome) from command line like this:
+		chromium-browser --disk-cache-size=1 --media-cache-size=1
+
+10. Check whether scheduler is set to deadline
+	cat /sys/block/sda/queue/scheduler    (substitute 'sda' with whatever SSD is)
+	The output should be: noop [deadline] cfq
+
+11. Make sure hibernation is disabled!
+
+12. Do not defrag SSDs!
+
