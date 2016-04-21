@@ -1,0 +1,68 @@
+4/19/16	Reinstalled Xubuntu basic install
+
+4/19/16	Setup wifi
+		sudo apt-get install firmware-b43-installer
+		sudo modprobe -r b43
+		sudo modprobe b43
+
+4/20/16	Change desktop
+		move image to /usr/share/xfce4/backdrops/
+		change file in GUI app (Desktop)
+
+4/20/16	Edit sudoers file so no password is required
+	sudo visudo
+	# Allow members of group sudo to execute any command
+	%sudo	ALL=(ALL) NOPASSWD:ALL
+
+4/20/16	sudo apt-get install lm-sensors
+	use "sensors" command to look at temperatures
+
+4/20/16	Changed /etc/default/grub file
+	fixed fan running balls out problem
+
+	Fan speed is normalized by editing the line
+
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+	in the grub configuration file found at /etc/default/grub so that it reads
+
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=!Windows 2006".
+
+	Follow these steps to try this solution:
+
+	Open a terminal, type sudo nano /etc/default/grub, and press ENTER
+
+	Edit the line,
+
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+	such that it reads,
+
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=!Windows 2006".
+	Click "Save", wait a few moments for the file to save, then close the text editor.
+	In the terminal, type
+
+	sudo update-grub
+
+	and hit ENTER
+	Finally, shut down your computer. Shut it down completely, so don't "restart" it.
+
+4/20/16	Run this command to add the repository: sudo add-apt-repository ppa:linrunner/tlp
+	Run: sudo apt-get update (to make your computer aware of the new repository)
+	Run: sudo apt-get install --no-install-recommends tlp (to install TLP)
+	Finally, run: sudo tlp start (to start the TLP service) 
+	You won’t need to do this ever again as it should start automatically on each boot.
+
+x/x/xx	Install Chrome
+
+	Setup key with:
+		wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+	
+	Setup repository with:
+		sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+	Setup package with:
+		sudo apt-get update 
+		sudo apt-get install google-chrome-stable
+
+
