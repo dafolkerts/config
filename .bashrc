@@ -116,3 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 alias config='/usr/bin/git --git-dir=/home/dave/.myconfig/ --work-tree=/home/dave'
+alias chrome='chromium-browser --disk-cache-size=1 --media-cache-size=1'
