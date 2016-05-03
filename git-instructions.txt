@@ -1,0 +1,12 @@
+1.  Files 'git-completion.bash' and  'git-prompt.sh' should be
+    in your home directory.
+
+2.  FOR SUBLIME:
+	git config --global core.editor "subl -n -w"
+
+    FOR ATOM:
+	git config --global core.editor "atom --wait"
+
+3.  THESE COMMANDS MAY ALREADY BE INCORPORATED:
+    git config --global push.default upstream
+    git config --global merge.conflictstyle diff3

@@ -1,3 +1,7 @@
 [user]
 	name = dafolkerts
 	email = dafolkerts@gmail.com
+[push]
+	default = upstream
+[merge]
+	conflictstyle = diff3
